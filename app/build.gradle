@@ -20,6 +20,11 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        def propertiesFile = project.rootProject.file("local.properties")
+        def properties = new Properties()
+        properties.load(new FileInputStream(propertiesFile))
+        buildConfigField "String", "API_KEY", "\"${properties['OPENWEATHER_API_KEY']}\""
     }
 
     buildTypes {
@@ -38,6 +43,7 @@ android {
     buildFeatures {
         compose true
         viewBinding true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.5.1'
