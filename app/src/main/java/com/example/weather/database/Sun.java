@@ -14,10 +14,10 @@ public class Sun {
     public int cityId;
 
     @ColumnInfo(name = "sunrise")
-    public Date sunrise;
+    public long sunrise;
 
     @ColumnInfo(name = "sunset")
-    public Date sunset;
+    public long sunset;
 
     // TODO 一日分？
 }
