@@ -16,7 +16,7 @@ public class Forecast {
 
     // TODO key
     @ColumnInfo(name = "datetime")
-    public Date datetime;
+    public long datetime;
 
     // Main
     @ColumnInfo(name = "temperature")
@@ -77,7 +77,7 @@ public class Forecast {
     public int visibility;
 
     @ColumnInfo(name = "probability_of_precipitation")
-    private int probabilityOfPrecipitation;
+    public int probabilityOfPrecipitation;
 
     @ColumnInfo(name = "rain_volume_last_3_hour")
     public int rainVolumeForLast3Hour;
