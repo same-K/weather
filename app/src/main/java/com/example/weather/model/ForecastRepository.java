@@ -1,6 +1,11 @@
 package com.example.weather.model;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.weather.database.AppDatabase;
+import com.example.weather.database.Location;
+
+import java.util.List;
 
 public class ForecastRepository implements ForecastRepositoryInterface{
 
@@ -18,5 +23,10 @@ public class ForecastRepository implements ForecastRepositoryInterface{
     @Override
     public void store(OpenWeatherResponse forecast) {
         // TODO
+    }
+
+    public LiveData<List<Location>> getAllLocation()
+    {
+        return database.locationDao().getAll();
     }
 }
