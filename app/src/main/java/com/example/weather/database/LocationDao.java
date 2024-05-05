@@ -1,5 +1,6 @@
 package com.example.weather.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -16,5 +17,5 @@ public interface LocationDao {
     void delete(Location location);
 
     @Query("SELECT * FROM locations")
-    List<Location> getAll();
+    LiveData<List<Location>> getAll();
 }

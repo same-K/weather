@@ -28,4 +28,13 @@ public class Location {
 
     @ColumnInfo(name = "timezone")
     public int timezone;
+    
+    public Location(int cityId, String cityName, String country, float longitude, float latitude)
+    {
+        this.cityId = cityId;
+        this.cityName = cityName;
+        this.country = country;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 }
