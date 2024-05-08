@@ -1,10 +1,18 @@
 package com.example.weather.model;
 
-// TODO 名前
+import androidx.lifecycle.LiveData;
+
+import com.example.weather.database.Location;
+
+import java.util.List;
+
 public interface ForecastRepositoryInterface {
 
+    LiveData<Location> getLocation(int cityId);
 
-    OpenWeatherResponse getForecast(int cityId);
+    LiveData<List<Location>> getAllLocation();
+
+    void delete(int cityId);
 
     void store(OpenWeatherResponse forecast);
 }
