@@ -1,5 +1,6 @@
 package com.example.weather.model;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -26,7 +27,10 @@ public class DayForecastListAdapter extends ListAdapter<DayForecastItem, DayFore
 
     @Override
     public void onBindViewHolder(@NonNull DayForecastItemViewHolder holder, int position){
+        Log.d("Adapter", "onBindiViewHolder");
         DayForecastItem item = getItem(position);
-        // TODO
+        holder.binding.textDayForecastDay.setText(item.datetime);
+        holder.binding.imageDayForecastWeather.setImageDrawable(WeatherIconUtil.LoadDrawable(holder.itemView.getContext(), item.weatherId));
+        holder.binding.textDayForecastTemperature.setText(item.temperature);
     }
 }

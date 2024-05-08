@@ -75,6 +75,7 @@ public class ForecastFragment extends Fragment {
         viewModel.load(cityId).observe(getViewLifecycleOwner(), list -> {
             Log.d("ForecastFragment", "observe");
             List<HourForecastItem> lists = new ArrayList<>();
+            List<DayForecastItem> list2 = new ArrayList<>();
             for(int i=0; i<5; i++){
                 Forecast forecast = list.get(i);
                 HourForecastItem item = new HourForecastItem();
@@ -83,8 +84,15 @@ public class ForecastFragment extends Fragment {
                 item.weatherId = forecast.weatherId;
                 item.temperature = Math.round(forecast.temperature) + "℃";
                 lists.add(item);
+                // TODO
+                DayForecastItem item2 = new DayForecastItem();;
+                item2.datetime = new SimpleDateFormat("MM:dd").format(new Date(forecast.datetime));
+                item2.weatherId = forecast.weatherId;
+                item2.temperature = Math.round(forecast.temperature) + "℃";
+                list2.add(item2);
             }
             hourAdapter.submitList(lists);
+            dayAdapter.submitList(list2);
         });
 
         return binding.getRoot();
