@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Forecast {
 
-    public long datetime;
+    public long dt;
 
     public Main main;
 
@@ -19,6 +19,8 @@ public class Forecast {
     public float pop;
 
     public Rain rain;
+
+    public Snow snow;
 
     public Sys sys;
 
@@ -63,7 +65,11 @@ public class Forecast {
     }
 
     public class Rain {
-        public float threeHour;
+        public int threeHour;
+    }
+
+    public class Snow {
+        public int threeHour;
     }
 
     public class Sys{

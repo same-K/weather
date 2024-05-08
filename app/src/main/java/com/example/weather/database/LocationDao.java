@@ -18,4 +18,10 @@ public interface LocationDao {
 
     @Query("SELECT * FROM locations")
     LiveData<List<Location>> getAll();
+
+    @Query("SELECT * FROM locations WHERE locations.city_id = :cityId")
+    LiveData<Location> get(int cityId);
+
+    @Query("SELECT * FROM locations WHERE locations.city_id = :cityId")
+    Location getSync(int cityId);
 }
