@@ -40,10 +40,11 @@ public abstract class AppDatabase extends RoomDatabase {
             super.onCreate(db);
             executor.execute(()->{
                 LocationDao ldao = instance.locationDao();
-                ldao.insert(new Location(1850147,"東京", "JP", 139.691711f, 35.689499f));
-                ldao.insert(new Location(1862047, "兵庫", "JP", 134.825974f, 35.040321f));
-                ldao.insert(new Location(1854487, "大分", "JP", 131.433533f, 33.19899f));
-                ldao.insert(new Location(2130037, "北海道", "JP", 141.346603f, 43.06451f));
+                // TODO 東京/東京都
+                ldao.insert(new Location(1850144,"Tokyo", "JP", 139.691711f, 35.689499f));
+                ldao.insert(new Location(1862047, "Hyōgo", "JP", 134.825974f, 35.040321f));
+                ldao.insert(new Location(1854487, "Ōita", "JP", 131.433533f, 33.19899f));
+                ldao.insert(new Location(2130037, "Hokkaido", "JP", 141.346603f, 43.06451f));
             });
         }
     };

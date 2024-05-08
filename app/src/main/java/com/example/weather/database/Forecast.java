@@ -8,9 +8,8 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "forecasts")
+@Entity(tableName = "forecasts", primaryKeys = {"city_id", "datetime"})
 public class Forecast {
-    @PrimaryKey()
     @ColumnInfo(name = "city_id")
     public int cityId;
 
@@ -44,7 +43,7 @@ public class Forecast {
     public int humidity;
 
     @ColumnInfo(name = "temp_kf")
-    public int temp_kf;
+    public float temp_kf;
 
     // Weather
     @ColumnInfo(name = "weather_id")
@@ -77,7 +76,7 @@ public class Forecast {
     public int visibility;
 
     @ColumnInfo(name = "probability_of_precipitation")
-    public int probabilityOfPrecipitation;
+    public float probabilityOfPrecipitation;
 
     @ColumnInfo(name = "rain_volume_last_3_hour")
     public int rainVolumeForLast3Hour;
