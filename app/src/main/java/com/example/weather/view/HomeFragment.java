@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -70,7 +71,14 @@ public class HomeFragment extends Fragment {
     private Listener listener = new Listener() {
         @Override
         public void onExecute(int id) {
-            Log.d("HomeFragment", "onExecute:"+id);
+            Log.d("HomeFragment","onExecute:"+id);
+            Bundle bundle = new Bundle();
+            bundle.putInt("CITY_ID", id);
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, ForecastFragment.class, bundle)
+                    .setReorderingAllowed(true)
+                    .commit();
         }
     };
 
