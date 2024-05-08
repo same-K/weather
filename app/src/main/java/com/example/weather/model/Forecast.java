@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Forecast {
 
-    public long datetime;
+    public long dt;
 
     public Main main;
 
