@@ -20,6 +20,8 @@ public class Forecast {
 
     public Rain rain;
 
+    public Snow snow;
+
     public Sys sys;
 
     public String dt_txt;
@@ -63,7 +65,11 @@ public class Forecast {
     }
 
     public class Rain {
-        public float threeHour;
+        public int threeHour;
+    }
+
+    public class Snow {
+        public int threeHour;
     }
 
     public class Sys{
