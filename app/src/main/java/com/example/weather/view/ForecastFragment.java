@@ -3,12 +3,20 @@ package com.example.weather.view;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,7 +58,35 @@ public class ForecastFragment extends Fragment {
         viewModel = new ViewModelProvider(this,
                 ViewModelProvider.Factory.from(ForecastViewModel.initializer)
         ).get(ForecastViewModel.class);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        activity.addMenuProvider(menuProvider);
     }
+
+    private MenuProvider menuProvider = new MenuProvider() {
+        @Override
+        public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+
+        }
+
+        @Override
+        public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case android.R.id.home:
+                    Log.d("ForecastFragment", "onClickHome");
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, HomeFragment.class, null)
+                            .setReorderingAllowed(true)
+                            .commit();
+                default:
+                    break;
+            }
+            return true;
+        }
+    };
 
     @Override
     public View onCreateView(
@@ -85,7 +121,7 @@ public class ForecastFragment extends Fragment {
                 item.temperature = Math.round(forecast.temperature) + "℃";
                 lists.add(item);
                 // TODO
-                DayForecastItem item2 = new DayForecastItem();;
+                DayForecastItem item2 = new DayForecastItem();
                 item2.datetime = new SimpleDateFormat("MM:dd").format(new Date(forecast.datetime));
                 item2.weatherId = forecast.weatherId;
                 item2.temperature = Math.round(forecast.temperature) + "℃";
@@ -105,6 +141,7 @@ public class ForecastFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        getActivity().removeMenuProvider(menuProvider);
         binding = null;
         onLoadFailureListener = null;
     }

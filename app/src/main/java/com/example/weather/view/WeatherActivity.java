@@ -4,8 +4,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.core.view.MenuProvider;
@@ -19,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.weather.R;
 import com.example.weather.databinding.ActivityWeatherBinding;
+import com.example.weather.databinding.FragmentHomeBinding;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class WeatherActivity extends AppCompatActivity {
@@ -45,8 +48,10 @@ public class WeatherActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
     }
+
 
     private void setupMenuBar() {
         addMenuProvider(new MenuProvider() {
