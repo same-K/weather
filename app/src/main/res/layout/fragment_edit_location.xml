@@ -7,6 +7,46 @@
     android:layout_height="match_parent"
     tools:context=".view.EditLocationFragment">
 
+    <TextView
+        android:id="@+id/text_label_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地点を検索して登録"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/baseline_search_24"
+        android:drawablePadding="4dp"
+        android:maxLines="1"
+        android:hint="都市名を入力"
+        android:imeOptions="actionSearch"
+        app:layout_constraintTop_toBottomOf="@+id/text_label_register"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:id="@+id/text_label_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登録済み地点"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_edit_location"
@@ -14,6 +54,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_text_input"
+        app:layout_constraintTop_toBottomOf="@+id/text_label_list"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
