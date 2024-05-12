@@ -15,11 +15,15 @@ import androidx.lifecycle.viewmodel.ViewModelInitializer;
 import com.example.weather.database.AppDatabase;
 import com.example.weather.database.Location;
 import com.example.weather.model.ForecastRepository;
+import com.example.weather.model.LocationList;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.stream.Collectors;
 
 public class EditLocationViewModel extends ViewModel {
 
@@ -28,6 +32,7 @@ public class EditLocationViewModel extends ViewModel {
     public EditLocationViewModel(ForecastRepository repository)
     {
         this.repository = repository;
+        _locations.setValue(repository.getAllLocation().getValue());
     }
 
     public static final ViewModelInitializer<EditLocationViewModel> initializer = new ViewModelInitializer<>(
@@ -39,7 +44,36 @@ public class EditLocationViewModel extends ViewModel {
             }
     );
 
-    public LiveData<List<Location>> loadLocations(){
-        return repository.getAllLocation();
+    private MutableLiveData<List<Location>> _locations = new MutableLiveData<List<Location>>();
+
+    public LiveData<List<Location>> getLocations() {
+        return _locations;
+    }
+
+    // TODO
+    public void loadLocations(){
+        _locations.setValue(repository.getAllLocation().getValue());
+//        _locations.postValue(repository.getAllLocation().getValue());
+    }
+
+    public void delete(Location location){
+        repository.deleteLocation(location);
+    }
+
+    public void add(Location location){
+        repository.insertLocation(location);
+        // TODO 要確認
+        _locations.getValue().add(location);
+    }
+
+    List<String> cityNameList;
+    public List<String> getCityCandidates(String text){
+        cityNameList = LocationList.getInstance().getCityNames();
+        if(cityNameList == null){
+            return null;
+        }
+
+        List<String> filtered = cityNameList.stream().filter(city -> city.startsWith(text)).collect(Collectors.toList());
+        return Collections.unmodifiableList(filtered);
     }
 }

@@ -190,4 +190,14 @@ public class ForecastRepository implements ForecastRepositoryInterface{
     public void store(OpenWeatherResponse forecast) {
         // TODO
     }
+
+    // TODO
+    public void deleteLocation(Location location){
+        locationDao.delete(location);
+        forecastDAO.deleteByCityId(location.cityId);
+    }
+
+    public void insertLocation(Location location){
+        locationDao.insert(location);
+    }
 }
